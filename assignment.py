@@ -25,11 +25,16 @@ for line in Seattle:
     del[line['date']],
     del[line['day']]
 # create a new list that is going to have values averages and months as indexes
-final_list = [0,0,0,0,0,0,0,0,0,0,0,0]
+final_list = [0]*12
 for line in Seattle:
     month = int(line['month']) 
     final_list[month-1] = line['value'] +  final_list[month-1]
 print(final_list)
+
+import json
+with open('Seattle_months.json', 'w') as file: 
+    json.dump(final_list, file , indent=4 , sort_keys = True ) 
+
 
 
 
