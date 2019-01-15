@@ -10,6 +10,7 @@ with open('precipitation.json', 'r') as file:
     for line in station_dictionary:
         if line['station']=='GHCND:US1WAKG0038':
             Seattle.append(line)
+
     
 # Clean the Dictionary from the datatype and station
 for line in Seattle:
@@ -35,17 +36,24 @@ import json
 with open('Seattle_months.json', 'w') as file: 
     json.dump(final_list, file , indent=4 , sort_keys = True ) 
 
-# Part 2
+#Part 2
 #Calculate the sum of the precipitation over the whole year., we use the final_list which has the precipations per month 
-total_precipation = int(sum(final_list))
-print('The total precipation is: ' + str(total_precipation))
+total_precipitation = int(sum(final_list))
+print('The total precipation is: ' + str(total_precipitation))
 
 # Calculate the relative precipitation per month (percentage compared to the precipitation over the whole year)
 # We have to devide each value in the final_list by the total and multiply by 100 (and we loop it around the final_list)
-relative_presipation = [100*i/total_precipation for i in final_list]
-print(relative_presipation)
+relative_precipitation= [100*i/total_precipitation for i in final_list]
+print(relative_precipitation)
 
-
+import json
+with open('total_precipitation.json', 'w') as file: 
+    json.dump(total_precipitation, file , indent=4 , sort_keys = True ) 
+import json
+with open('relative_precipitation.json', 'w') as file: 
+    json.dump(relative_precipitation, file , indent=4 , sort_keys = True ) 
+#Part 3
+#Rewrite your code so that it calculates all the above for each location
 
 
 
